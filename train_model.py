@@ -21,18 +21,25 @@ def train_and_save_model():
     le_style = LabelEncoder()
     le_edu = LabelEncoder()
     le_diff = LabelEncoder()
-    le_curr = LabelEncoder() # Create new encoder for Current Topic
+    
 
     df['LearningStyle_Enc'] = le_style.fit_transform(df['LearningStyle'].astype(str))
     df['EducationLevel_Enc'] = le_edu.fit_transform(df['EducationLevel'].astype(str))
     df['ContextualDifficulty_Enc'] = le_diff.fit_transform(df['ContextualDifficulty'].astype(str))
-    df['CurrentTopic_Enc'] = le_curr.fit_transform(df['CurrentTopic'].astype(str)) # Encode it
+   
 
     feature_cols = [
-        'QuizScore', 'Attempts', 'TimeSpent', 'Progress', 'PreviousGPA',
-        'EngagementScore', 'LearningStyle_Enc', 'EducationLevel_Enc', 'ContextualDifficulty_Enc',
-        'CurrentTopic_Enc' # Add to features
-    ]
+    'QuizScore',
+    'Attempts',
+    'TimeSpent',
+    'Progress',
+    'PreviousGPA',
+    'EngagementScore',
+    'LearningStyle_Enc',
+    'EducationLevel_Enc',
+    'ContextualDifficulty_Enc'
+]
+    
     X = df[feature_cols]
     y = df['NextTopic']
 
