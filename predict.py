@@ -29,6 +29,7 @@ def predict_recommendations(student_features):
     edu_enc = safe_transform(le_edu, student_features.get('EducationLevel', 'UG'), default="UG")
     diff_enc = safe_transform(le_diff, student_features.get('ContextualDifficulty', 'Medium'), default="Medium")
 
+    input_row = pd.DataFrame(...)[feature_cols]
     input_row = pd.DataFrame([{
         'QuizScore': float(student_features.get('QuizScore', 70)),
         'Attempts': int(student_features.get('Attempts', 2)),
