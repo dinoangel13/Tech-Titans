@@ -4,6 +4,26 @@ import plotly.express as px
 from predict import predict_recommendations
 from database import get_student_by_id, save_recommendation, get_all_resources
 
+students_df = get_all_students()
+
+if st.session_state["role"] == "student":
+
+    active_student = students_df[
+        students_df["student_id"] ==
+        st.session_state["student_id"]
+    ].iloc[0].to_dict()
+
+else:
+
+    selected_name = st.selectbox(
+        "Select Student",
+        students_df["name"]
+    )
+
+    active_student = students_df[
+        students_df["name"] == selected_name
+    ].iloc[0].to_dict()
+
 st.set_page_config(page_title="AI Recommendations & XAI - PathAI", page_icon="🤖", layout="wide")
 
 if not st.session_state.get('authenticated'):
@@ -88,5 +108,25 @@ st.divider()
 
 st.subheader("📖 Curated Resources for Primary Recommendation")
 resources_df = get_all_resources()
+
+resources_df = resources_df.rename(columns={
+    "title": "Title",
+    "type": "Type",
+    "difficulty": "Difficulty",
+    "duration_minutes": "Duration (min)",
+    "url": "URL"
+})
+st.dataframe(
+    resources_df[['Title', 'Type', 'Difficulty', 'Duration (min)', 'URL']],
+    use_container_width=True,
+    hide_index=True
+)
+if resources_df is not None:
+    st.write(resources_df.columns.tolist())
+    st.dataframe(resources_df.head())
 if not resources_df.empty:
-    st.dataframe(resources_df[['Title', 'Type', 'Difficulty', 'DurationMinutes', 'URL']], use_container_width=True, hide_index=True)
+    st.dataframe(
+        resources_df,
+        use_container_width=True,
+        hide_index=True
+    )
