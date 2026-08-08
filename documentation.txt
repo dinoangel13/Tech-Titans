@@ -438,14 +438,14 @@ It's about giving every student the right next step.
 
 👥 Team
 
-Team Name: [Your Team Name]
+Team Name: Tech Titans 
 
 Team Members:
 
-[Member 1]
-[Member 2]
-[Member 3]
-[Member 4]
+Sanika Narkhede
+Shreya Maindargikar
+Aditya Mhaske
+Aryan Jakhalekar
 🏆 Hackathon
 
 Tech Rush Hackathon 2026
